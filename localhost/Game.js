@@ -5,6 +5,8 @@ function Game()
 {
 	this.Player1 = new Cube();
 	this.Player2 = new Cube();
+	this.Player1.scramble();
+	this.Player2.scramble();
 }
 
 Game.prototype.scramble = function()

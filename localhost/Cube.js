@@ -188,6 +188,9 @@ Cube.prototype.move = function(moves)
 	if (moves == "R3") { this.R(); this.R(); this.R(); }
 	if (moves == "B1") { this.B(); }
 	if (moves == "B3") { this.B(); this.B(); this.B(); }
+	if (moves == "X")  { this.X(); }
+	if (moves == "Y")  { this.Y(); }
+	if (moves == "Z")  { this.Z(); }
 }
 
 Cube.prototype.debug = function()
