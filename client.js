@@ -59,7 +59,6 @@ socket.on('update', function(data){
 		for (i = 0; i < 3; ++i)
 			for (j = 0; j < 3; ++j)
 				player.down.setColor(i, j, data["me"].down._colors[i][j]);
-	}
 	$('#cube .fup').each(function() {
 		$(this).css('transition-duration','0.0s');
 	});
@@ -88,8 +87,8 @@ socket.on('update', function(data){
 		$(this).css('transition-duration','0.0s');
 	});
 	player.revert();
-
-  for (i = 0; i < 3; ++i)
+	}
+	for (i = 0; i < 3; ++i)
     for (j = 0; j < 3; ++j)
       enemy.front.setColor(i, j, data["enemy"].front._colors[i][j]);
   for (i = 0; i < 3; ++i)
