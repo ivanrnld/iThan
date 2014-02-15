@@ -19,6 +19,32 @@ socket.on('update', function(data){
   var i,j;
 
   console.log(data);
+	if (data["me"].isSolved) {
+		var x = jQuery('<div>YOU WIN!</div>', {
+		});
+		x.css('position','absolute');
+		x.css('width','500px');
+		x.css('height','100px');
+		x.css('background-color','gray');
+		x.css('font-size','70px');
+		x.css('text-align','center');
+		x.css('z-index','2');
+		$('#playerscreen').append(x);
+		console.log(x.css('height'));
+	}
+	if (data["enemy"].isSolved) {
+		var x = jQuery('<div>YOU LOSE!</div>', {
+		});
+		x.css('position','absolute');
+		x.css('width','500px');
+		x.css('height','100px');
+		x.css('background-color','gray');
+		x.css('font-size','70px');
+		x.css('text-align','center');
+		x.css('z-index','2');
+		$('#playerscreen').append(x);
+		console.log(x.css('height'));
+	}
   for (i = 0; i < 5; ++i)
       if (data["me"].havePowerUp[i])
           addPower(i+1);
