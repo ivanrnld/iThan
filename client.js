@@ -26,17 +26,17 @@ socket.on('update', function(data){
 	for (i = 0; i < 3; ++i)
 		for (j = 0; j < 3; ++j)
 		{
-			if (player.front[i][j] !=data["me"].front._colors[i][j])
+			if (player.front.color[i][j] !=data["me"].front._colors[i][j])
 				canChange = true;
-			if (player.back[i][j] !=data["me"].back._colors[i][j])
+			if (player.back.color[i][j] !=data["me"].back._colors[i][j])
 				canChange = true;
-			if (player.left[i][j] !=data["me"].left._colors[i][j])
+			if (player.left.color[i][j] !=data["me"].left._colors[i][j])
 				canChange = true;
-			if (player.right[i][j] !=data["me"].right._colors[i][j])
+			if (player.right.color[i][j] !=data["me"].right._colors[i][j])
 				canChange = true;
-			if (player.up[i][j] !=data["me"].up._colors[i][j])
+			if (player.up.color[i][j] !=data["me"].up._colors[i][j])
 				canChange = true;
-			if (player.down[i][j] !=data["me"].down._colors[i][j])
+			if (player.down.color[i][j] !=data["me"].down._colors[i][j])
 				canChange = true;
 		}
 	if (canChange)
