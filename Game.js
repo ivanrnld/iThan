@@ -42,8 +42,56 @@ Game.prototype.scramble = function()
 	}
 }
 
+Game.prototype.usePowerUp = function(playerAttack,playerDefend,powerUpIndex)
+{
+	if (playerAttack.havePowerUp[powerUpIndex])
+	{
+		playerAttack.havePowerUp[powerUpIndex] = false;
+		playerDefend.defend[powerUpIndex] = true;
+		playerAttack.attack[powerUpIndex] = true;
+		if (powerUpIndex == 2 || powerUpIndex == 3)
+		{
+			playerDefend.scramble(3);
+		}
+		if (powerUpIndex == 4)
+		{
+			playerDefend.scramble(1000);
+		}
+	}
+}
 
+Game.prototype.send = function(player)
+{
+	var toSend = new Cube();
+	toSend.front.fillSetColor(player.front._colors);
+	toSend.left.fillSetColor(player.left._colors);
+	toSend.up.fillSetColor(player.up._colors);
+	toSend.down.fillSetColor(player.down._colors);
+	toSend.right.fillSetColor(player.right._colors);
+	toSend.back.fillSetColor(player.back._colors);
+	toSend.isSolved = player.isSolved;
+	for (var i = 0; i < 6; ++i)
+		toSend.havePowerUp[i] = player.havePowerUp[i];
+	if (player.defend[0] || player.defend[3])
+	{
+		for (var i = 0; i < 3; ++i)
+			for (var j = 0; j < 3; ++j)
+			{
+				toSend.front._colors[i][j] = COLOR_BLACK;
+				toSend.left._colors[i][j] = COLOR_BLACK;
+				toSend.up._colors[i][j] = COLOR_BLACK;
+				toSend.down._colors[i][j] = COLOR_BLACK;
+				toSend.right._colors[i][j] = COLOR_BLACK;
+				toSend.back._colors[i][j] = COLOR_BLACK;
+			}
+	}
+	return toSend;
+}
 
+Game.prototype.move = function(player,moves)
+{
+	player.move(moves);
+}
 
 
 

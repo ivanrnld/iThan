@@ -22,6 +22,7 @@ function Cube()
 		this.havePowerUp[i] = false;
 		this.attack[i] = false;
 		this.defend[i] = false;
+		this.isSolved = false;
 	}
 	this.numberOfSolves = 0;
 }
@@ -122,57 +123,105 @@ Cube.prototype.usePowerUp = function()
 
 Cube.prototype.check = function()
 {
+	var solved = true;
 	if (this.front.checkSame() != -1 && !this.solved[this.front.checkSame()])
 	{
 		this.havePowerUp[this.numberOfSolves] = true;
 		this.solved[this.front.checkSame()] = true;
 		++this.numberOfSolves;
 	}
+	if (this.front.checkSame() == -1) solved = false;
 	if (this.left.checkSame() != -1 && !this.solved[this.left.checkSame()])
 	{
 		this.havePowerUp[this.numberOfSolves] = true;
 		this.solved[this.left.checkSame()] = true;
 		++this.numberOfSolves;
 	}
+	if (this.left.checkSame() == -1) solved = false;
 	if (this.up.checkSame() != -1 && !this.solved[this.up.checkSame()])
 	{
 		this.havePowerUp[this.numberOfSolves] = true;
 		this.solved[this.up.checkSame()] = true;
 		++this.numberOfSolves;
 	}
+	if (this.up.checkSame() == -1) solved = false;
 	if (this.down.checkSame() != -1 && !this.solved[this.down.checkSame()])
 	{
 		this.havePowerUp[this.numberOfSolves] = true;
 		this.solved[this.down.checkSame()] = true;
 		++this.numberOfSolves;
 	}
+	if (this.down.checkSame() == -1) solved = false;
 	if (this.right.checkSame() != -1 && !this.solved[this.right.checkSame()])
 	{
 		this.havePowerUp[this.numberOfSolves] = true;
 		this.solved[this.right.checkSame()] = true;
 		++this.numberOfSolves;
 	}
+	if (this.right.checkSame() == -1) solved = false;
 	if (this.back.checkSame() != -1 && !this.solved[this.back.checkSame()])
 	{
 		this.havePowerUp[this.numberOfSolves] = true;
 		this.solved[this.back.checkSame()] = true;
 		++this.numberOfSolves;
 	}
+	if (this.back.checkSame() == -1) solved = false;
+
+	if (solved) this.isSolved = 0;
 }
 
-Cube.prototype.send()
+Cube.prototype.move = function(moves)
 {
-	var toSend = new Cube();
-	toSend.front.fillSetColor(front._colors);
-	toSend.left.fillSetColor(left._colors);
-	toSend.up.fillSetColor(up._colors);
-	toSend.down.fillSetColor(down._colors);
-	toSend.right.fillSetColor(right._colors);
-	toSend.back.fillSetColor(back._colors);
+	if (this.defend[1]) return;
+	if (moves == "F1") { this.F(); }
+	if (moves == "F3") { this.F(); this.F(); this.F(); }
+	if (moves == "L1") { this.L(); }
+	if (moves == "L3") { this.L(); this.L(); this.L(); }
+	if (moves == "U1") { this.U(); }
+	if (moves == "U3") { this.U(); this.U(); this.U(); }
+	if (moves == "D1") { this.D(); }
+	if (moves == "D3") { this.D(); this.D(); this.D(); }
+	if (moves == "R1") { this.R(); }
+	if (moves == "R3") { this.R(); this.R(); this.R(); }
+	if (moves == "B1") { this.B(); }
+	if (moves == "B3") { this.B(); this.B(); this.B(); }
 }
 
+Cube.prototype.debug = function()
+{
+	for (var i = 0; i < 3; ++i)
+	{
+		var s = "";
+		for (var j = 0; j < 3; ++j) s = s + this.front._colors[i][j] + " ";
+		console.log(s);
+	}
+	for (var i = 0; i < 3; ++i)
+	{
+		var s = "";
+		for (var j = 0; j < 3; ++j) s = s + this.right._colors[i][j] + " ";
+		console.log(s);
+	}
+	for (var i = 0; i < 3; ++i)
+	{
+		var s = "";
+		for (var j = 0; j < 3; ++j) s = s + this.up._colors[i][j] + " ";
+		console.log(s);
+	}
+}
 
-
+Cube.prototype.scramble = function(numberOfMoves)
+{
+	for (var moves = 0; moves < numberOfMoves; ++moves)
+	{
+		var currentState = Math.floor((Math.random()*1000)+1) % 6;
+		if (currentState == 0) this.F();
+		if (currentState == 1) this.L();
+		if (currentState == 2) this.U();
+		if (currentState == 3) this.D();
+		if (currentState == 4) this.R();
+		if (currentState == 5) this.B();
+	}
+}
 
 
 

@@ -6,7 +6,7 @@ function Face(size){
 
 // Private functions
 Face.prototype._clearColors = function(){
-  _colors = [];
+  this._colors = [];
 }
 
 // Constructors
@@ -14,11 +14,13 @@ Face.prototype.fillSingleColor = function(color){
   var i, j;
   this._clearColors();
 
-  for(i = 0; i < this._cubeSize; i++){
+  for(i = 0; i < this._cubeSize; i++)
+  {
     var tmp = [];
     for (j = 0; j < this._cubeSize; j++) tmp.push(color); 
     this._colors.push(tmp);
   }
+  //console.log(this._colors);
 }
 
 Face.prototype.fillSetColor = function(colorScheme){
