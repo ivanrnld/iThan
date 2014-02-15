@@ -586,5 +586,5 @@ removePower = function(x) {
 
 usePower = function(x) {
 	//NOTE : ONE BASED
-	console.log("Power" + (x));
+	console.log("Power" + (x-1));
 }
