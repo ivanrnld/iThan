@@ -1,0 +1,57 @@
+#player {
+	width : 500px;
+	height : 500px;
+	float : left;
+	background-color : #000000;
+}
+
+#container {
+	width : 300px;
+	height : 300px;
+	margin-left : auto;
+	margin-right : auto;
+	position: relative;
+	top : 100px;
+	margin-bottom : auto;
+	-webkit-perspective : 1200px;
+}
+
+#enemy {
+	width : 500px;
+	height : 500px;
+	float : right;
+	background-color : #000000;
+}
+
+#containerenemy {
+	width : 300px;
+	height : 300px;
+	margin-left : auto;
+	margin-right : auto;
+	position: relative;
+	top : 100px;
+	margin-bottom : auto;
+	-webkit-perspective : 1200px;
+}
+
+#cube div {
+	width : 100px;
+	height : 100px;
+	left : 100px;
+	top : 100px;
+	position : absolute;
+	border : 2px solid black;
+}
+#cubeenemy div {
+	width : 100px;
+	height : 100px;
+	left : 100px;
+	top : 100px;
+	position : absolute;
+	border : 2px solid black;
+}
+
+#screen {
+	width : 1000px;
+	height : 500px;
+}
