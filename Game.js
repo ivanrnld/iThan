@@ -99,6 +99,18 @@ Game.prototype.move = function(player,moves)
 	player.check();
 }
 
+Game.prototype.operate = function(playerAttack,playerDefend,moves)
+{
+	if (moves[0] == "P")
+	{
+		var x = moves[1] - '0';
+		this.usePowerUp(playerAttack,playerDefend,x);
+	} else
+	{
+		this.move(playerAttack,moves);
+	}
+}
+
 module.exports = function(){
 	return new Game();
 }

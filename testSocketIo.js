@@ -44,29 +44,29 @@ io.sockets.on('connection', function (socket) {
     if(numPlayer == 0){
       socket.emit('auth', { auth: auth1});
 
-      clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+      clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
 
-      clients[0].on('move', function(data){
-        if(data["auth"] == auth1) gameObject.move(gameObject.Player1, data["move"]);
-        clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+      clients[0].on('operate', function(data){
+        if(data["auth"] == auth1) gameObject.operate(gameObject.Player1, gameObject.Player2, data["operate"]);
+        clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
       });
     }
     else{
       socket.emit('auth', {auth: auth2});
 
-      clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
-      clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+      clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
+      clients[1].emit('update', {me: gameObject.send(Player2), enemy: gameObject.send(Player1)});
 
-      clients[0].on('move', function(data){
-        if(data["auth"] == auth1) gameObject.move(gameObject.Player1, data["move"]);
-        clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
-        clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+      clients[0].on('operate', function(data){
+        if(data["auth"] == auth1) gameObject.operate(gameObject.Player1, gameObject.Player2, data["operate"]);
+        clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
+        clients[1].emit('update', {me: gameObject.send(Player2), enemy: gameObject.send(Player1)});
       });
 
-      clients[1].on('move', function(data){
-        if (data["auth"] == auth2) gameObject.move(gameObject.Player2, data["move"]);
-        clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
-        clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+      clients[1].on('operate', function(data){
+        if (data["auth"] == auth2) gameObject.operate(gameObject.Player2, gameObject.Player1, data["operate"]);
+        clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
+        clients[1].emit('update', {me: gameObject.send(Player2), enemy: gameObject.send(Player1)});
       });
     }
   }
@@ -79,19 +79,19 @@ io.sockets.on('connection', function (socket) {
     clients[0].emit('auth', {auth: auth1});
     clients[1].emit('auth', {auth: auth2});
 
-    clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
-    clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+    clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
+    clients[1].emit('update', {me: gameObject.send(Player2), enemy: gameObject.send(Player1)});
 
-    clients[0].on('move', function(data){
-      if(data["auth"] == auth1) gameObject.move(gameObject.Player1, data["move"]);
-      clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
-      clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+    clients[0].on('operate', function(data){
+      if(data["auth"] == auth1) gameObject.operate(gameObject.Player1, gameObject.Player2, data["operate"]);
+      clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
+      clients[1].emit('update', {me: gameObject.send(Player2), enemy: gameObject.send(Player1)});
     });
 
-    clients[1].on('move', function(data){
-      if (data["auth"] == auth2) gameObject.move(gameObject.Player2, data["move"]);
-      clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
-      clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+    clients[1].on('operate', function(data){
+      if (data["auth"] == auth2) gameObject.operate(gameObject.Player2, gameObject.Player1, data["operate"]);
+      clients[0].emit('update', {me: gameObject.send(Player1), enemy: gameObject.send(Player2)});
+      clients[1].emit('update', {me: gameObject.send(Player2), enemy: gameObject.send(Player1)});
     });
   }
 

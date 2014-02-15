@@ -12,7 +12,7 @@ socket.on('auth', function(data){
 move = function(moveCommand){
 
   console.log("Client: " + auth);
-  socket.emit('move', {auth: auth, move: moveCommand});
+  socket.emit('operate', {auth: auth, operate: moveCommand});
 }
 
 socket.on('update', function(data){
