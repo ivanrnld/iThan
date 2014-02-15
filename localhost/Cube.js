@@ -175,7 +175,7 @@ Cube.prototype.check = function()
 	}
 	if (this.back.checkSame() == -1) solved = false;
 
-	if (solved) this.isSolved = 0;
+	if (solved) this.isSolved = true;
 }
 
 Cube.prototype.move = function(moves)
