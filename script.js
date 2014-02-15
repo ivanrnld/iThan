@@ -1,15 +1,24 @@
+function lastObj() {
+	this.move = "EMPTY";
+}
+
 
 function Face() {
 	this.color = new Array(3);
 	this.id = new Array(3);
+	this.oritrans = new Array(3);
+	this.lastmove = "EMPTY";
 	for (var i = 0; i < 3; i++)
 	{
 		this.color[i] = new Array(3);
 		this.id[i] = new Array(3);
+		this.oritrans[i] = new Array(3);
 		for (var j = 0; j < 3; j++)
 			this.color[i][j] = "#000000";
 	}
 }
+
+
 
 Face.prototype.setColor = function(row, column, newcolor) {
 	this.color[row][column] = newcolor;
@@ -27,6 +36,14 @@ function Cube(container, id) {
 	this.right = new Face();
 	this.up = new Face();
 	this.down = new Face();
+	var x = new lastObj();
+	this.front.lastmove = x;
+	this.back.lastmove = x;
+	this.left.lastmove = x;
+	this.right.lastmove = x;
+	this.up.lastmove = x;
+	this.down.lastmove = x;
+	this.lastmove = x;
 	this.container = container;
 	this.Id = id;
 	this.size = 100;
@@ -86,6 +103,147 @@ function Cube(container, id) {
 			this.down.setColor(i, j, "white");
 		}
 	}
+	$('#'+this.front.id[0][0]).addClass("ffront fleft fup");
+	$('#'+this.front.id[0][1]).addClass("ffront fup fmid");
+	$('#'+this.front.id[0][2]).addClass("fright fup ffront");
+	$('#'+this.front.id[1][0]).addClass("ffront fleft fequ");
+	$('#'+this.front.id[1][1]).addClass("fmid ffront fequ");
+	$('#'+this.front.id[1][2]).addClass("fright fequ ffront");
+	$('#'+this.front.id[2][0]).addClass("ffront fleft fdown");
+	$('#'+this.front.id[2][1]).addClass("ffront fdown fmid");
+	$('#'+this.front.id[2][2]).addClass("ffront fdown fright");
+	$('#'+this.up.id[0][0]).addClass("fleft fback fup");
+	$('#'+this.up.id[0][1]).addClass("fmid fup fback");
+	$('#'+this.up.id[0][2]).addClass("fup fback fright");
+	$('#'+this.up.id[1][0]).addClass("fstand fup fleft");
+	$('#'+this.up.id[1][1]).addClass("fstand fmid fup");
+	$('#'+this.up.id[1][2]).addClass("fright fstand fup");
+	$('#'+this.up.id[2][0]).addClass("fleft fup ffront");
+	$('#'+this.up.id[2][1]).addClass("fup ffront fmid");
+	$('#'+this.up.id[2][2]).addClass("fup ffront fright");
+	$('#'+this.right.id[0][0]).addClass("fup fright ffront");
+	$('#'+this.right.id[0][1]).addClass("fup fright fstand");
+	$('#'+this.right.id[0][2]).addClass("fup fright fback");
+	$('#'+this.right.id[1][0]).addClass("ffront fequ fright");
+	$('#'+this.right.id[1][1]).addClass("fright fequ fstand");
+	$('#'+this.right.id[1][2]).addClass("fequ fback fright");
+	$('#'+this.right.id[2][0]).addClass("fdown fright ffront");
+	$('#'+this.right.id[2][1]).addClass("fdown fstand fright");
+	$('#'+this.right.id[2][2]).addClass("fdown fback fright");
+	$('#'+this.back.id[0][0]).addClass("fup fback fright");
+	$('#'+this.back.id[0][1]).addClass("fmid fup fback");
+	$('#'+this.back.id[0][2]).addClass("fleft fback fup");
+	$('#'+this.back.id[1][0]).addClass("fright fback fequ");
+	$('#'+this.back.id[1][1]).addClass("fmid fequ fback");
+	$('#'+this.back.id[1][2]).addClass("fleft fequ fback");
+	$('#'+this.back.id[2][0]).addClass("fright fback fdown");
+	$('#'+this.back.id[2][1]).addClass("fmid fdown fback");
+	$('#'+this.back.id[2][2]).addClass("fback fdown fleft");
+	$('#'+this.left.id[0][0]).addClass("fleft fup fback");
+	$('#'+this.left.id[0][1]).addClass("fleft fstand fup");
+	$('#'+this.left.id[0][2]).addClass("fleft fup ffront");
+	$('#'+this.left.id[1][0]).addClass("fequ fleft fback");
+	$('#'+this.left.id[1][1]).addClass("fequ fleft fstand");
+	$('#'+this.left.id[1][2]).addClass("fequ fleft ffront");
+	$('#'+this.left.id[2][0]).addClass("fdown fleft fback");
+	$('#'+this.left.id[2][1]).addClass("fdown fleft fstand");
+	$('#'+this.left.id[2][2]).addClass("fdown fleft ffront");
+	$('#'+this.down.id[0][0]).addClass("fdown ffront fleft");
+	$('#'+this.down.id[0][1]).addClass("fdown ffront fmid");
+	$('#'+this.down.id[0][2]).addClass("fdown ffront fright");
+	$('#'+this.down.id[1][0]).addClass("fdown fstand fleft");
+	$('#'+this.down.id[1][1]).addClass("fdown fstand fmid");
+	$('#'+this.down.id[1][2]).addClass("fdown fstand fright");
+	$('#'+this.down.id[2][0]).addClass("fdown fback fleft");
+	$('#'+this.down.id[2][1]).addClass("fdown fback fmid");
+	$('#'+this.down.id[2][2]).addClass("fdown fback fright");
+}
+
+Cube.prototype.revert = function() {
+	//front
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++) 
+		{
+			if ($('#'+this.front.id[i][j]).css("transform")!=this.front.oritrans[i][j])
+			{
+				var transform = this.front.oritrans[i][j];
+				$('#'+this.front.id[i][j]).css("-webkit-transform",transform);
+				$('#'+this.front.id[i][j]).css("transform",transform);
+				$('#'+this.front.id[i][j]).css("z-index",1);
+			}
+		}
+	}
+	//back
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++) 
+		{
+			if ($('#'+this.back.id[i][j]).css("transform")!=this.back.oritrans[i][j])
+			{
+				var transform = this.back.oritrans[i][j];
+				$('#'+this.back.id[i][j]).css("-webkit-transform",transform);
+				$('#'+this.back.id[i][j]).css("transform",transform);
+				$('#'+this.back.id[i][j]).css("z-index",1);
+			}
+		}
+	}
+	//left
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++) 
+		{
+			if ($('#'+this.left.id[i][j]).css("transform")!=this.left.oritrans[i][j])
+			{
+				var transform = this.left.oritrans[i][j];
+				$('#'+this.left.id[i][j]).css("-webkit-transform",transform);
+				$('#'+this.left.id[i][j]).css("transform",transform);
+				$('#'+this.left.id[i][j]).css("z-index",1);
+			}
+		}
+	}
+	//right
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++) 
+		{
+			if ($('#'+this.right.id[i][j]).css("transform")!=this.right.oritrans[i][j])
+			{
+				var transform = this.right.oritrans[i][j];
+				$('#'+this.right.id[i][j]).css("-webkit-transform",transform);
+				$('#'+this.right.id[i][j]).css("transform",transform);
+				$('#'+this.right.id[i][j]).css("z-index",1);
+			}
+		}
+	}
+	//top
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++) 
+		{
+			if ($('#'+this.up.id[i][j]).css("transform")!=this.up.oritrans[i][j])
+			{
+				var transform = this.up.oritrans[i][j];
+				$('#'+this.up.id[i][j]).css("-webkit-transform",transform);
+				$('#'+this.up.id[i][j]).css("transform",transform);
+				$('#'+this.up.id[i][j]).css("z-index",1);
+			}
+		}
+	}
+	//bottom
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++) 
+		{
+			if ($('#'+this.down.id[i][j]).css("transform")!=this.down.oritrans[i][j])
+			{
+				var transform = this.down.oritrans[i][j];
+				$('#'+this.down.id[i][j]).css("-webkit-transform",transform);
+				$('#'+this.down.id[i][j]).css("transform",transform);
+				$('#'+this.down.id[i][j]).css("z-index",1);
+			}
+		}
+	}
 }
 
 Cube.prototype.show = function() {
@@ -97,6 +255,7 @@ Cube.prototype.show = function() {
 			transform = "translateX(" + ((this.size*(j-1))+0) + "px) "
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
+			this.front.oritrans[i][j] = transform;
 			$('#'+this.front.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.front.id[i][j]).css("transform",transform);
 			$('#'+this.front.id[i][j]).css("z-index",1);
@@ -111,6 +270,7 @@ Cube.prototype.show = function() {
 									+"translateX(" + ((this.size*(j-1))+0) + "px) "
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
+			this.back.oritrans[i][j] = transform;
 			$('#'+this.back.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.back.id[i][j]).css("transform",transform);
 			$('#'+this.back.id[i][j]).css("z-index",0);
@@ -125,6 +285,7 @@ Cube.prototype.show = function() {
 									+"translateX(" + ((this.size*(j-1))+0) + "px) "
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
+			this.left.oritrans[i][j] = transform;
 			$('#'+this.left.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.left.id[i][j]).css("transform",transform);
 			$('#'+this.left.id[i][j]).css("z-index",0);
@@ -139,6 +300,7 @@ Cube.prototype.show = function() {
 									+"translateX(" + ((this.size*(j-1))+0) + "px) "
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size*(3/2)+0)+ "px) ";
+			this.right.oritrans[i][j] = transform;
 			$('#'+this.right.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.right.id[i][j]).css("transform",transform);
 			$('#'+this.right.id[i][j]).css("z-index",1);
@@ -153,6 +315,7 @@ Cube.prototype.show = function() {
 									+"translateX(" + (this.size*(j-1)+0) + "px) "
 									+"translateY(" + (this.size*(i-1)+0) + "px) "
 									+"translateZ(" + (this.size*(3/2)+0) + "px) ";
+			this.up.oritrans[i][j] = transform;
 			$('#'+this.up.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.up.id[i][j]).css("transform",transform);
 			$('#'+this.up.id[i][j]).css("z-index",1);
@@ -167,6 +330,7 @@ Cube.prototype.show = function() {
 									+"translateX(" + (this.size*(j-1)+0) + "px) "
 									+"translateY(" + (this.size*(i-1)+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
+			this.down.oritrans[i][j] = transform;
 			$('#'+this.down.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.down.id[i][j]).css("transform",transform);
 			$('#'+this.down.id[i][j]).css("z-index",0);
@@ -812,23 +976,18 @@ Cube.prototype.addAllArrow = function() {
 initPower = function() {
 	$('#power'+1).click(function() {
 		usePower(1);
-		removePower(1);
 	});
 	$('#power'+2).click(function() {
 		usePower(2);
-		removePower(2);
 	});
 	$('#power'+3).click(function() {
 		usePower(3);
-		removePower(3);
 	});
 	$('#power'+4).click(function() {
 		usePower(4);
-		removePower(4);
 	});
 	$('#power'+5).click(function() {
 		usePower(5);
-		removePower(5);
 	});
 }
 

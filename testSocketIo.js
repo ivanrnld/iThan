@@ -113,11 +113,11 @@ function updateBothPlayers(){
   updatePlayer1 = setInterval(function(){
     clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
     if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer1);
-  }, 1000);
+  }, 2000);
   updatePlayer2 = setInterval(function(){
     clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
     if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer2);
-  }, 1000);
+  }, 2000);
 }
 
 function updatePlayer1Only(){
@@ -126,7 +126,7 @@ function updatePlayer1Only(){
   updatePlayer1 = setInterval(function(){
     clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
     if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer1);
-  }, 1000);
+  }, 2000);
 }
 
 
