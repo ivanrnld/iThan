@@ -58,6 +58,7 @@ Game.prototype.usePowerUp = function(playerAttack,playerDefend,powerUpIndex)
 			playerDefend.scramble(1000);
 		}
 	}
+	playerDefend.check();
 }
 
 Game.prototype.send = function(player)
@@ -91,6 +92,7 @@ Game.prototype.send = function(player)
 Game.prototype.move = function(player,moves)
 {
 	player.move(moves);
+	player.check();
 }
 
 
