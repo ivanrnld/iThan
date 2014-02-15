@@ -5,8 +5,7 @@ function Game()
 {
 	this.Player1 = new Cube();
 	this.Player2 = new Cube();
-	this.Player1.scramble();
-	this.Player2.scramble();
+	this.scramble();
 }
 
 Game.prototype.scramble = function()
@@ -53,7 +52,6 @@ Game.prototype.usePowerUp = function(playerAttack,playerDefend,powerUpIndex)
 	{
 		playerAttack.havePowerUp[powerUpIndex] = false;
 		playerDefend.defend[powerUpIndex] = true;
-		playerAttack.attack[powerUpIndex] = true;
 		if (powerUpIndex == 2 || powerUpIndex == 3)
 		{
 			playerDefend.scramble(3);
@@ -98,6 +96,18 @@ Game.prototype.move = function(player,moves)
 {
 	player.move(moves);
 	player.check();
+}
+
+Game.prototype.operate = function(playerAttack,playerDefend,moves)
+{
+	if (moves[0] == "P")
+	{
+		var x = moves[1] - '0';
+		this.usePowerUp(playerAttack,playerDefend,x);
+	} else
+	{
+		this.move(playerAttack,moves);
+	}
 }
 
 // module.exports = function(){

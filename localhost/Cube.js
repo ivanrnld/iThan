@@ -17,13 +17,11 @@ function Cube()
 	this.back.fillSingleColor(COLOR_ORANGE);
 	this.solved = [];
 	this.havePowerUp = [];
-	this.attack = [];
 	this.defend = [];
 	for (var i = 0; i < 6; ++i)
 	{
 		this.solved[i] = false;
 		this.havePowerUp[i] = false;
-		this.attack[i] = false;
 		this.defend[i] = false;
 		this.isSolved = false;
 	}
@@ -114,14 +112,6 @@ Cube.prototype.F = function()
 Cube.prototype.B = function()
 {
 	this.X(); this.X(); this.X(); this.U(); this.X();
-}
-
-Cube.prototype.usePowerUp = function()
-{		
-	if (this.havePowerUp[x])
-	{
-		this.havePowerUp[x] = false;
-	}
 }
 
 Cube.prototype.check = function()
