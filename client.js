@@ -75,3 +75,18 @@ turnL = function(x) {
   move('L'+x);
   console.log('L' + x);
 }
+
+turnX = function() {
+  move('X');
+  console.log('X');
+}
+
+turnY = function() {
+  move('Y');
+  console.log('Y');
+}
+
+turnZ = function() {
+  move('Z');
+  console.log('Z');
+}
