@@ -110,6 +110,21 @@ turnZ = function() {
   console.log('Z');
 }
 
+turnM = function(x) {
+	move('M' + x);
+	console.log('M' + x);
+}
+
+turnE = function(x) {
+	move('E' + x);
+	console.log('E' + x);
+}
+
+turnS = function(x) {
+	move('S' + x);
+	console.log('S' + x);
+}
+
 usePower = function(x) {
   //NOTE : ONE BASED
   move('P' + (x-1));
