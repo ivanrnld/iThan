@@ -41,7 +41,14 @@ var gameObject = Game();
 io.sockets.on('connection', function (socket) {
   if(numPlayer < 2 && numPlayer >= 0){
     clients[numPlayer] = socket;
-    if(numPlayer == 0) socket.emit('auth', { auth: auth1});
+    if(numPlayer == 0){
+      socket.emit('auth', { auth: auth1});
+
+      clients[0].on('move', function(data){
+        if(data["auth"] == auth1) gameObject.move(gameObject.Player1, data["move"]);
+        clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+      });
+    }
     else{
       socket.emit('auth', {auth: auth2});
 
