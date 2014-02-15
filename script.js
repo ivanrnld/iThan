@@ -39,7 +39,10 @@ function Cube(container, id) {
 	$('#'+id).css('height', '100%');
 	$('#'+id).css('position', 'absolute');
 	$('#'+id).css('-webkit-transform-style', 'preserve-3d');
+	$('#'+id).css('transform-style', 'preserve-3d');
 	$('#'+id).css('-webkit-transform', 'rotateX(-30deg) rotateY(-45deg)');
+	$('#'+id).css('transform', 'rotateX(-30deg) rotateY(-45deg)');
+	
 	
 	for (var i = 0; i < 3; i++)
 	{
@@ -91,10 +94,12 @@ Cube.prototype.show = function() {
 	{
 		for (var j = 0; j < 3; j++) 
 		{
-			transform = "translateX(" + ((this.size*(j-1))+1.2) + "px) "
-									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
-									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
+			transform = "translateX(" + ((this.size*(j-1))+0) + "px) "
+									+"translateY(" + ((this.size*(i-1))+0) + "px) "
+									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			$('#'+this.front.id[i][j]).css("-webkit-transform",transform);
+			$('#'+this.front.id[i][j]).css("transform",transform);
+			$('#'+this.front.id[i][j]).css("z-index",1);
 		}
 	}
 	//back
@@ -103,10 +108,12 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(180deg)"
-									+"translateX(" + ((this.size*(j-1))+1.2) + "px) "
-									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
-									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
+									+"translateX(" + ((this.size*(j-1))+0) + "px) "
+									+"translateY(" + ((this.size*(i-1))+0) + "px) "
+									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			$('#'+this.back.id[i][j]).css("-webkit-transform",transform);
+			$('#'+this.back.id[i][j]).css("transform",transform);
+			$('#'+this.back.id[i][j]).css("z-index",0);
 		}
 	}
 	//left
@@ -115,10 +122,12 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(-90deg)"
-									+"translateX(" + ((this.size*(j-1))+1.2) + "px) "
-									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
-									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
+									+"translateX(" + ((this.size*(j-1))+0) + "px) "
+									+"translateY(" + ((this.size*(i-1))+0) + "px) "
+									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			$('#'+this.left.id[i][j]).css("-webkit-transform",transform);
+			$('#'+this.left.id[i][j]).css("transform",transform);
+			$('#'+this.left.id[i][j]).css("z-index",0);
 		}
 	}
 	//right
@@ -127,10 +136,12 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(90deg)"
-									+"translateX(" + ((this.size*(j-1))+1.2) + "px) "
-									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
-									+"translateZ(" + (this.size*(3/2)+1.2)+ "px) ";
+									+"translateX(" + ((this.size*(j-1))+0) + "px) "
+									+"translateY(" + ((this.size*(i-1))+0) + "px) "
+									+"translateZ(" + (this.size*(3/2)+0)+ "px) ";
 			$('#'+this.right.id[i][j]).css("-webkit-transform",transform);
+			$('#'+this.right.id[i][j]).css("transform",transform);
+			$('#'+this.right.id[i][j]).css("z-index",1);
 		}
 	}
 	//top
@@ -139,10 +150,12 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateX(90deg)"
-									+"translateX(" + (this.size*(j-1)+1.2) + "px) "
-									+"translateY(" + (this.size*(i-1)+1.2) + "px) "
-									+"translateZ(" + (this.size*(3/2)+1.2) + "px) ";
+									+"translateX(" + (this.size*(j-1)+0) + "px) "
+									+"translateY(" + (this.size*(i-1)+0) + "px) "
+									+"translateZ(" + (this.size*(3/2)+0) + "px) ";
 			$('#'+this.up.id[i][j]).css("-webkit-transform",transform);
+			$('#'+this.up.id[i][j]).css("transform",transform);
+			$('#'+this.up.id[i][j]).css("z-index",1);
 		}
 	}
 	//bottom
@@ -151,10 +164,12 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateX(-90deg)"
-									+"translateX(" + (this.size*(j-1)+1.2) + "px) "
-									+"translateY(" + (this.size*(i-1)+1.2) + "px) "
-									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
+									+"translateX(" + (this.size*(j-1)+0) + "px) "
+									+"translateY(" + (this.size*(i-1)+0) + "px) "
+									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			$('#'+this.down.id[i][j]).css("-webkit-transform",transform);
+			$('#'+this.down.id[i][j]).css("transform",transform);
+			$('#'+this.down.id[i][j]).css("z-index",0);
 		}
 	}
 }
@@ -253,7 +268,6 @@ turnZ = function() {
 Cube.prototype.addAllArrow = function() {
 	var id;
 	id = '#' + this.front.id[0][0];
-	console.log(id);
 	var a1 = id;
 	$(id).hover (
 		function() {

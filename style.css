@@ -51,6 +51,7 @@
 	top : 100px;
 	margin-bottom : auto;
 	-webkit-perspective : 1200px;
+	perspective : 1200px;
 }
 
 #enemy {
@@ -68,6 +69,7 @@
 	top : 100px;
 	margin-bottom : auto;
 	-webkit-perspective : 1200px;
+	perspective : 1200px;
 }
 
 #cube div {
