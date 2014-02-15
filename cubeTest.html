@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <head>
+    <script src="Constant.js"></script>
+    <script src="Face.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Game.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      G = new Game();
+      G.scramble();
+      for (var i = 0; i < 3; ++i)
+      {
+        var str = "";
+        for (var j = 0; j < 3; ++j)
+        {
+          str = str + G.Player1.front._colors[i][j] + " ";
+        }
+        console.log(str);
+      }
+      console.log("");
+      for (var i = 0; i < 3; ++i)
+      {
+        var str = "";
+        for (var j = 0; j < 3; ++j)
+        {
+          str = str + G.Player1.right._colors[i][j] + " ";
+        }
+        console.log(str);
+      }
+      console.log("");
+      for (var i = 0; i < 3; ++i)
+      {
+        var str = "";
+        for (var j = 0; j < 3; ++j)
+        {
+          str = str + G.Player1.up._colors[i][j] + " ";
+        }
+        console.log(str);
+      }
+    </script>
+  </body>
+</html>
