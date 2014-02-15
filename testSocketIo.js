@@ -65,6 +65,29 @@ io.sockets.on('connection', function (socket) {
       });
     }
   }
+
+  else{
+    // kick previous player
+    clients[0] = clients[1];
+    clients[1] = socket;
+
+    clients[0].emit('auth', {auth: auth1});
+    clients[1].emit('auth', {auth: auth2});
+
+    clients[0].on('move', function(data){
+      if(data["auth"] == auth1) gameObject.move(gameObject.Player1, data["move"]);
+      clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+      clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+    });
+
+    clients[1].on('move', function(data){
+      if (data["auth"] == auth2) gameObject.move(gameObject.Player2, data["move"]);
+      clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+      clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+    });
+  }
+
+  numPlayer++;
 });
 
 
