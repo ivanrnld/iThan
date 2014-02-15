@@ -22,25 +22,44 @@ socket.on('update', function(data){
   for (i = 0; i < 5; ++i)
       if (data["me"].havePowerUp[i])
           addPower(i+1);
-  for (i = 0; i < 3; ++i)
-    for (j = 0; j < 3; ++j)
-      player.front.setColor(i, j, data["me"].front._colors[i][j]);
-  for (i = 0; i < 3; ++i)
-    for (j = 0; j < 3; ++j)
-      player.back.setColor(i, j, data["me"].back._colors[i][j]);
-  for (i = 0; i < 3; ++i)
-    for (j = 0; j < 3; ++j)
-      player.left.setColor(i, j, data["me"].left._colors[i][j]);
-  for (i = 0; i < 3; ++i)
-    for (j = 0; j < 3; ++j)
-      player.right.setColor(i, j, data["me"].right._colors[i][j]);
-  for (i = 0; i < 3; ++i)
-    for (j = 0; j < 3; ++j)
-      player.up.setColor(i, j, data["me"].up._colors[i][j]);
-  for (i = 0; i < 3; ++i)
-    for (j = 0; j < 3; ++j)
-      player.down.setColor(i, j, data["me"].down._colors[i][j]);
-			
+	bool canChange = false;
+	for (i = 0; i < 3; ++i)
+		for (j = 0; j < 3; ++j)
+		{
+			if (player.front[i][j] !=data["me"].front._colors[i][j])
+				canChange = true;
+			if (player.back[i][j] !=data["me"].back._colors[i][j])
+				canChange = true;
+			if (player.left[i][j] !=data["me"].left._colors[i][j])
+				canChange = true;
+			if (player.right[i][j] !=data["me"].right._colors[i][j])
+				canChange = true;
+			if (player.up[i][j] !=data["me"].up._colors[i][j])
+				canChange = true;
+			if (player.down[i][j] !=data["me"].down._colors[i][j])
+				canChange = true;
+		}
+	if (canChange)
+	{
+		for (i = 0; i < 3; ++i)
+			for (j = 0; j < 3; ++j)
+				player.front.setColor(i, j, data["me"].front._colors[i][j]);
+		for (i = 0; i < 3; ++i)
+			for (j = 0; j < 3; ++j)
+				player.back.setColor(i, j, data["me"].back._colors[i][j]);
+		for (i = 0; i < 3; ++i)
+			for (j = 0; j < 3; ++j)
+				player.left.setColor(i, j, data["me"].left._colors[i][j]);
+		for (i = 0; i < 3; ++i)
+			for (j = 0; j < 3; ++j)
+				player.right.setColor(i, j, data["me"].right._colors[i][j]);
+		for (i = 0; i < 3; ++i)
+			for (j = 0; j < 3; ++j)
+				player.up.setColor(i, j, data["me"].up._colors[i][j]);
+		for (i = 0; i < 3; ++i)
+			for (j = 0; j < 3; ++j)
+				player.down.setColor(i, j, data["me"].down._colors[i][j]);
+	}
 	$('#cube .fup').each(function() {
 		$(this).css('transition-duration','0.0s');
 	});
