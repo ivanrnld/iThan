@@ -40,6 +40,25 @@ socket.on('update', function(data){
   for (i = 0; i < 3; ++i)
     for (j = 0; j < 3; ++j)
       player.down.setColor(i, j, data["me"].down._colors[i][j]);
+
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      enemy.front.setColor(i, j, data["enemy"].front._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      enemy.back.setColor(i, j, data["enemy"].back._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      enemy.left.setColor(i, j, data["enemy"].left._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      enemy.right.setColor(i, j, data["enemy"].right._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      enemy.up.setColor(i, j, data["enemy"].up._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      enemy.down.setColor(i, j, data["enemy"].down._colors[i][j]);
 });
 
 removeArrow = function(x) {
