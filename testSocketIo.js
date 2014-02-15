@@ -26,9 +26,11 @@ function handler (req, res) {
   });
 }
 
+var gameObject = new Game();
+
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+  // socket.emit('news', { hello: 'world' });
+  socket.on('move', function (data) {
     console.log(data);
   });
 });

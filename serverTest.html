@@ -1,14 +1,35 @@
-<!DOCTYPE html>
+<html>
   <head>
-    <script src="http://172.18.14.113:8080/socket.io/socket.io.js"></script>
+    <script src = "jquery-1.11.0.js"> </script>
+    <script src = "script.js"> </script>
+    <script src = "http://172.18.14.113:8080/socket.io/socket.io.js"></script>
+    <script src = "client.js"> </script>
+    <link rel = "stylesheet" href = "style.css"> </link>
   </head>
   <body>
+    <div id = "screen">
+      <div id = "player">
+        <div id = "container"> </div>
+      </div>
+      <div id = "enemy">
+        <div id = "containerenemy" > </div>
+      </div>
+    </div>
     <script>
-      var socket = io.connect('http://localhost:8080');
-      socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-      });
+      player = new Cube("container","cube");
+      player.changeSize(100);
+      player.show();
+      player.addAllArrow();
+      
+      enemy = new Cube("containerenemy", "cubeenemy");
+      enemy.changeSize(60);
+      enemy.show();
+
+      // var socket = io.connect('http://localhost:8080');
+      // socket.on('news', function (data) {
+      //   console.log(data);
+      //   socket.emit('my other event', { my: 'data' });
+      // });
     </script>
   </body>
 </html>
