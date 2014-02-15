@@ -14,7 +14,7 @@ var app = require('http').createServer(handler)
 app.listen(8080);
 
 function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
+  fs.readFile(__dirname + '/indexServer.html',
   function (err, data) {
     if (err) {
       res.writeHead(500);
@@ -26,11 +26,39 @@ function handler (req, res) {
   });
 }
 
-var gameObject = new Game();
+var numPlayer = 0;
+var auth1 = Math.floor(Math.random()*100000000);
+var auth2 = -1;
+while(auth2 == auth1){
+  auth1 = Math.floor(Math.random()*100000000);
+}
+var clients = {};
+
+var Game = require('./Game.js');
+var Constant = require('./Constant.js');
+var gameObject = Game();
 
 io.sockets.on('connection', function (socket) {
-  // socket.emit('news', { hello: 'world' });
-  socket.on('move', function (data) {
-    console.log(data);
-  });
+  if(numPlayer < 2 && numPlayer >= 0){
+    clients[numPlayer] = socket;
+    if(numPlayer == 0) socket.emit('auth', { auth: auth1});
+    else{
+      socket.emit('auth', {auth: auth2});
+
+      clients[0].on('move', function(data){
+        if(data["auth"] == auth1) gameObject.move(gameObject.Player1, data["move"]);
+        clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+        clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+      });
+
+      clients[1].on('move', function(data){
+        if (data["auth"] == auth2) gameObject.move(gameObject.Player2, data["move"]);
+        clients[0].emit('update', {me: gameObject.Player1, enemy: gameObject.Player2});
+        clients[1].emit('update', {me: gameObject.Player2, enemy: gameObject.Player1});
+      });
+    }
+  }
 });
+
+
+

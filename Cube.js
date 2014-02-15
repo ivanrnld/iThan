@@ -1,17 +1,20 @@
+var Face = require('./Face.js');
+var Constant = require('./Constant.js');
+
 function Cube()
 {
-	this.front = new Face(3);
-	this.front.fillSingleColor(COLOR_RED);
-	this.left = new Face(3);
-	this.left.fillSingleColor(COLOR_BLUE);
-	this.up = new Face(3);
-	this.up.fillSingleColor(COLOR_YELLOW);
-	this.down = new Face(3);
-	this.down.fillSingleColor(COLOR_WHITE);
-	this.right = new Face(3);
-	this.right.fillSingleColor(COLOR_GREEN);
-	this.back = new Face(3);
-	this.back.fillSingleColor(COLOR_ORANGE);
+	this.front = Face(3);
+	this.front.fillSingleColor(Constant.COLOR_RED);
+	this.left = Face(3);
+	this.left.fillSingleColor(Constant.COLOR_BLUE);
+	this.up = Face(3);
+	this.up.fillSingleColor(Constant.COLOR_YELLOW);
+	this.down = Face(3);
+	this.down.fillSingleColor(Constant.COLOR_WHITE);
+	this.right = Face(3);
+	this.right.fillSingleColor(Constant.COLOR_GREEN);
+	this.back = Face(3);
+	this.back.fillSingleColor(Constant.COLOR_ORANGE);
 	this.solved = [];
 	this.havePowerUp = [];
 	this.attack = [];
@@ -29,7 +32,7 @@ function Cube()
 
 Cube.prototype.X = function()
 {
-	var tmp = new Face(3);
+	var tmp = Face(3);
 	tmp.fillSetColor(this.up._colors);
 	this.up = this.front;
 	this.front = this.down;
@@ -45,7 +48,7 @@ Cube.prototype.X = function()
 
 Cube.prototype.Y = function()
 {
-	var tmp = new Face(3);
+	var tmp = Face(3);
 	tmp.fillSetColor(this.front._colors);
 	this.front = this.right;
 	this.right = this.back;
@@ -57,7 +60,7 @@ Cube.prototype.Y = function()
 
 Cube.prototype.Z = function()
 {
-	var tmp = new Face(3);
+	var tmp = Face(3);
 	tmp.fillSetColor(this.up._colors);
 	this.up = this.left;
 	this.left = this.down;
@@ -73,7 +76,7 @@ Cube.prototype.Z = function()
 
 Cube.prototype.U = function()
 {
-	var tmp = new Face(3);
+	var tmp = Face(3);
 	tmp.fillSetColor(this.front._colors);
 	this.front.updateRow(0,this.right.getRow(0));
 	this.right.updateRow(0,this.back.getRow(0));
@@ -84,7 +87,7 @@ Cube.prototype.U = function()
 
 Cube.prototype.D = function()
 {
-	var tmp = new Face(3);
+	var tmp = Face(3);
 	tmp.fillSetColor(this.front._colors);
 	this.front.updateRow(2,this.left.getRow(2));
 	this.left.updateRow(2,this.back.getRow(2));
@@ -221,6 +224,10 @@ Cube.prototype.scramble = function(numberOfMoves)
 		if (currentState == 4) this.R();
 		if (currentState == 5) this.B();
 	}
+}
+
+module.exports = function(){
+	return new Cube();
 }
 
 
