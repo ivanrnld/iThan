@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:8080');
+var socket = io.connect('http://calm-inlet-4399.herokuapp.com:8080');
 //   socket.on('update', function (data) {
 //   console.log(data);
 //   socket.emit('my other event', { my: 'data' });
