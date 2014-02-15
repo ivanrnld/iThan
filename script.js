@@ -555,6 +555,258 @@ Cube.prototype.addAllArrow = function() {
 			removeArrow($(a15));
 		}
 	)
+	id = '#' + this.up.id[0][1];
+	var a16 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a16));
+			$('#up').click(function() {
+				turnM(3);
+			});
+			$('#down').click(function() {
+				turnM(1);
+			});
+			$('#left').click(function() {
+				turnB(1);
+			});
+			$('#right').click(function() {
+				turnB(3);
+			});
+		}, function(){
+			removeArrow($(a16));
+		}
+	)
+	id = '#' + this.up.id[1][0];
+	var a17 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a17));
+			$('#up').click(function() {
+				turnL(3);
+			});
+			$('#down').click(function() {
+				turnL(1);
+			});
+			$('#left').click(function() {
+				turnS(3);
+			});
+			$('#right').click(function() {
+				turnS(1);
+			});
+		}, function(){
+			removeArrow($(a17));
+		}
+	)
+	id = '#' + this.up.id[2][1];
+	var a18 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a18));
+			$('#up').click(function() {
+				turnM(3);
+			});
+			$('#down').click(function() {
+				turnM(1);
+			});
+			$('#left').click(function() {
+				turnF(3);
+			});
+			$('#right').click(function() {
+				turnF(1);
+			});
+		}, function(){
+			removeArrow($(a18));
+		}
+	)
+	id = '#' + this.up.id[1][2];
+	var a19 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a19));
+			$('#up').click(function() {
+				turnR(1);
+			});
+			$('#down').click(function() {
+				turnR(3);
+			});
+			$('#left').click(function() {
+				turnS(3);
+			});
+			$('#right').click(function() {
+				turnS(1);
+			});
+		}, function(){
+			removeArrow($(a19));
+		}
+	)
+	id = '#' + this.front.id[0][1];
+	var a20 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a20));
+			$('#up').click(function() {
+				turnM(3);
+			});
+			$('#down').click(function() {
+				turnM(1);
+			});
+			$('#left').click(function() {
+				turnU(1);
+			});
+			$('#right').click(function() {
+				turnU(3);
+			});
+		}, function(){
+			removeArrow($(a20));
+		}
+	)
+	id = '#' + this.front.id[1][0];
+	var a21 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a21));
+			$('#up').click(function() {
+				turnL(3);
+			});
+			$('#down').click(function() {
+				turnL(1);
+			});
+			$('#left').click(function() {
+				turnE(3);
+			});
+			$('#right').click(function() {
+				turnE(1);
+			});
+		}, function(){
+			removeArrow($(a21));
+		}
+	)
+	id = '#' + this.front.id[2][1];
+	var a22 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a22));
+			$('#up').click(function() {
+				turnM(3);
+			});
+			$('#down').click(function() {
+				turnM(1);
+			});
+			$('#left').click(function() {
+				turnD(3);
+			});
+			$('#right').click(function() {
+				turnD(1);
+			});
+		}, function(){
+			removeArrow($(a22));
+		}
+	)
+	id = '#' + this.front.id[1][2];
+	var a23 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a23));
+			$('#up').click(function() {
+				turnR(1);
+			});
+			$('#down').click(function() {
+				turnR(3);
+			});
+			$('#left').click(function() {
+				turnE(3);
+			});
+			$('#right').click(function() {
+				turnE(1);
+			});
+		}, function(){
+			removeArrow($(a23));
+		}
+	)
+	id = '#' + this.right.id[0][1];
+	var a24 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a24));
+			$('#up').click(function() {
+				turnS(3);
+			});
+			$('#down').click(function() {
+				turnS(1);
+			});
+			$('#left').click(function() {
+				turnU(1);
+			});
+			$('#right').click(function() {
+				turnU(3);
+			});
+		}, function(){
+			removeArrow($(a24));
+		}
+	)
+	id = '#' + this.right.id[1][0];
+	var a25 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a25));
+			$('#up').click(function() {
+				turnF(3);
+			});
+			$('#down').click(function() {
+				turnF(1);
+			});
+			$('#left').click(function() {
+				turnE(3);
+			});
+			$('#right').click(function() {
+				turnE(1);
+			});
+		}, function(){
+			removeArrow($(a25));
+		}
+	)
+	id = '#' + this.right.id[2][1];
+	var a26 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a26));
+			$('#up').click(function() {
+				turnS(3);
+			});
+			$('#down').click(function() {
+				turnS(1);
+			});
+			$('#left').click(function() {
+				turnD(3);
+			});
+			$('#right').click(function() {
+				turnD(1);
+			});
+		}, function(){
+			removeArrow($(a26));
+		}
+	)
+	id = '#' + this.right.id[1][2];
+	var a27 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a27));
+			$('#up').click(function() {
+				turnB(1);
+			});
+			$('#down').click(function() {
+				turnB(3);
+			});
+			$('#left').click(function() {
+				turnE(3);
+			});
+			$('#right').click(function() {
+				turnE(1);
+			});
+		}, function(){
+			removeArrow($(a27));
+		}
+	)
 }
 
 initPower = function() {
@@ -585,6 +837,5 @@ removePower = function(x) {
 }
 
 usePower = function(x) {
-	//NOTE : ONE BASED
 	console.log("P" + (x-1));
 }
