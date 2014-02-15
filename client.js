@@ -1,4 +1,4 @@
-var socket = io.connect('http://calm-inlet-4399.herokuapp.com:8080');
+var socket = io.connect('https://fbhack-c9-nathanajah.c9.io');
 //   socket.on('update', function (data) {
 //   console.log(data);
 //   socket.emit('my other event', { my: 'data' });
