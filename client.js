@@ -24,8 +24,22 @@ socket.on('update', function(data){
           addPower(i+1);
   for (i = 0; i < 3; ++i)
     for (j = 0; j < 3; ++j)
-      player.front.setColor(i, j, data["me"].front[i][j]);
-
+      player.front.setColor(i, j, data["me"].front._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      player.back.setColor(i, j, data["me"].back._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      player.left.setColor(i, j, data["me"].left._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      player.right.setColor(i, j, data["me"].right._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      player.up.setColor(i, j, data["me"].up._colors[i][j]);
+  for (i = 0; i < 3; ++i)
+    for (j = 0; j < 3; ++j)
+      player.down.setColor(i, j, data["me"].down._colors[i][j]);
 });
 
 removeArrow = function(x) {
