@@ -544,6 +544,34 @@ Cube.prototype.addAllArrow = function() {
 	)
 }
 
+initPower = function() {
+	$('#power'+1).click(function() {
+		usePower(1);
+	});
+	$('#power'+2).click(function() {
+		usePower(2);
+	});
+	$('#power'+3).click(function() {
+		usePower(3);
+	});
+	$('#power'+4).click(function() {
+		usePower(4);
+	});
+	$('#power'+5).click(function() {
+		usePower(5);
+	});
+}
+
 addPower = function(x) {
 	$('#power'+x).css('background-image','url(powerup'+x+'.png)');
+}
+
+removePower = function(x) {
+	$('#power'+x).css('background-image','none');
+	$('#power'+x).css('background-color','gray');
+}
+
+usePower = function(x) {
+	//NOTE : ONE BASED
+	console.log("Power" + (x));
 }
