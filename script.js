@@ -47,7 +47,6 @@ function Cube(container, id) {
 		{
 			
 			this.front.setId(i, j, this.Id + "front" + i + j);
-			console.log(this.Id);
 			jQuery('<div></div>', {
 				id : this.front.id[i][j]
 			}).appendTo('#' + this.Id);
@@ -92,9 +91,9 @@ Cube.prototype.show = function() {
 	{
 		for (var j = 0; j < 3; j++) 
 		{
-			transform = "translateX(" + (this.size*(j-1)) + "px) "
-									+"translateY(" + (this.size*(i-1)) + "px) "
-									+"translateZ(" + this.size * (3/2) + "px) ";
+			transform = "translateX(" + ((this.size*(j-1))+1.2) + "px) "
+									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
+									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
 			$('#'+this.front.id[i][j]).css("-webkit-transform",transform);
 		}
 	}
@@ -104,9 +103,9 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(180deg)"
-									+"translateX(" + (this.size*(j-1)) + "px) "
-									+"translateY(" + (this.size*(i-1)) + "px) "
-									+"translateZ(" + this.size * (3/2) + "px) ";
+									+"translateX(" + ((this.size*(j-1))+1.2) + "px) "
+									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
+									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
 			$('#'+this.back.id[i][j]).css("-webkit-transform",transform);
 		}
 	}
@@ -116,9 +115,9 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(-90deg)"
-									+"translateX(" + (this.size*(j-1)) + "px) "
-									+"translateY(" + (this.size*(i-1)) + "px) "
-									+"translateZ(" + this.size * (3/2) + "px) ";
+									+"translateX(" + ((this.size*(j-1))+1.2) + "px) "
+									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
+									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
 			$('#'+this.left.id[i][j]).css("-webkit-transform",transform);
 		}
 	}
@@ -128,9 +127,9 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(90deg)"
-									+"translateX(" + (this.size*(j-1)) + "px) "
-									+"translateY(" + (this.size*(i-1)) + "px) "
-									+"translateZ(" + this.size * (3/2) + "px) ";
+									+"translateX(" + ((this.size*(j-1))+1.2) + "px) "
+									+"translateY(" + ((this.size*(i-1))+1.2) + "px) "
+									+"translateZ(" + (this.size*(3/2)+1.2)+ "px) ";
 			$('#'+this.right.id[i][j]).css("-webkit-transform",transform);
 		}
 	}
@@ -140,9 +139,9 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateX(90deg)"
-									+"translateX(" + (this.size*(j-1)) + "px) "
-									+"translateY(" + (this.size*(i-1)) + "px) "
-									+"translateZ(" + this.size * (3/2) + "px) ";
+									+"translateX(" + (this.size*(j-1)+1.2) + "px) "
+									+"translateY(" + (this.size*(i-1)+1.2) + "px) "
+									+"translateZ(" + (this.size*(3/2)+1.2) + "px) ";
 			$('#'+this.up.id[i][j]).css("-webkit-transform",transform);
 		}
 	}
@@ -152,9 +151,9 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateX(-90deg)"
-									+"translateX(" + (this.size*(j-1)) + "px) "
-									+"translateY(" + (this.size*(i-1)) + "px) "
-									+"translateZ(" + this.size * (3/2) + "px) ";
+									+"translateX(" + (this.size*(j-1)+1.2) + "px) "
+									+"translateY(" + (this.size*(i-1)+1.2) + "px) "
+									+"translateZ(" + (this.size * (3/2)+1.2) + "px) ";
 			$('#'+this.down.id[i][j]).css("-webkit-transform",transform);
 		}
 	}
