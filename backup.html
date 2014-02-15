@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<script src = "jquery-1.11.0.js"> </script>
+		<script src = "script.js"> </script>
+		<link rel = "stylesheet" href = "style.css"> </link>
+	</head>
+	<body>
+		<div id = "screen">
+			<div id = "player">
+				<div id = "container"> </div>
+			</div>
+			<div id = "enemy">
+				<div id = "containerenemy" > </div>
+			</div>
+		</div>
+		<script>
+			player = new Cube("container","cube");
+			player.changeSize(100);
+			player.show();
+			enemy = new Cube("containerenemy", "cubeenemy");
+			enemy.changeSize(50);
+			enemy.show();
+		</script>
+	</body>
+</html>
