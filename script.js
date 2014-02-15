@@ -544,3 +544,6 @@ Cube.prototype.addAllArrow = function() {
 	)
 }
 
+addPower = function(x) {
+	$('#power'+x).css('background-image','url(powerup'+x+'.png)');
+}

@@ -1,16 +1,29 @@
 <html>
+	<title>Rubik's Cube Battle!</title>
 	<head>
 		<script src = "jquery-1.11.0.js"> </script>
 		<script src = "script.js"> </script>
 		<link rel = "stylesheet" href = "style.css"> </link>
 	</head>
 	<body>
+		
 		<div id = "screen">
-			<div id = "player">
-				<div id = "container"> </div>
+			<div id = "playerscreen" class = "screen_class">
+				<div id = "player">
+					<div id = "container"> </div>
+				</div>
+				<div id = "poweruprow">
+					<div class = "powerup" id = "power1"> </div>
+					<div class = "powerup" id = "power2"> </div>
+					<div class = "powerup" id = "power3"> </div>
+					<div class = "powerup" id = "power4"> </div>
+					<div class = "powerup" id = "power5"> </div>
+				</div>
 			</div>
-			<div id = "enemy">
-				<div id = "containerenemy" > </div>
+			<div id = "enemyscreen" class = "screen_class">
+				<div id = "enemy">
+					<div id = "containerenemy" > </div>
+				</div>
 			</div>
 		</div>
 		<script>
@@ -22,6 +35,9 @@
 			enemy = new Cube("containerenemy", "cubeenemy");
 			enemy.changeSize(60);
 			enemy.show();
+			addPower(1);
+			addPower(2);
+			addPower(1);
 		</script>
 	</body>
 </html>
