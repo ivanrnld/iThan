@@ -116,6 +116,21 @@ Cube.prototype.B = function()
 	this.X(); this.X(); this.X(); this.U(); this.X();
 }
 
+Cube.prototype.S = function()
+{
+	this.F(); this.F(); this.F(); this.B(); this.Z();
+}
+
+Cube.prototype.E = function()
+{
+	this.U(); this.D(); this.D(); this.D(); this.Y(); this.Y(); this.Y();
+}
+
+Cube.prototype.M = function()
+{
+	this.R(); this.L(); this.L(); this.L(); this.X(); this.X(); this.X();
+}
+
 Cube.prototype.usePowerUp = function()
 {		
 	if (this.havePowerUp[x])
@@ -191,6 +206,12 @@ Cube.prototype.move = function(moves)
 	if (moves == "X")  { this.X(); }
 	if (moves == "Y")  { this.Y(); }
 	if (moves == "Z")  { this.Z(); }
+	if (moves == "S1") { this.S(); }
+	if (moves == "S3") { this.S(); this.S(); this.S(); }
+	if (moves == "E1") { this.E(); }
+	if (moves == "E3") { this.E(); this.E(); this.E(); }
+	if (moves == "M1") { this.M(); }
+	if (moves == "M3") { this.M(); this.M(); this.M(); }
 }
 
 Cube.prototype.debug = function()

@@ -38,6 +38,9 @@ var Game = require('./Game.js');
 var Constant = require('./Constant.js');
 var gameObject = Game();
 
+// var updatePlayer1;
+// var updatePlayer2;
+
 io.sockets.on('connection', function (socket) {
   if(numPlayer < 2 && numPlayer >= 0){
     clients[numPlayer] = socket;
@@ -98,5 +101,17 @@ io.sockets.on('connection', function (socket) {
   numPlayer++;
 });
 
+// function updateBothPlayers(){
+//   if(typeof updatePlayer1 != 'undefined' || typeof updatePlayer1 != 'null') clearInterval(updatePlayer1);
+//   if(typeof updatePlayer2 != 'undefined' || typeof updatePlayer2 != 'null') clearInterval(updatePlayer2);
+
+
+// }
+
+// function updatePlayer1Only(){
+//   if(typeof updatePlayer1 != 'undefined' || typeof updatePlayer1 != 'null') clearInterval(updatePlayer1);
+
+  
+// }
 
 
