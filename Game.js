@@ -52,7 +52,14 @@ Game.prototype.usePowerUp = function(playerAttack,playerDefend,powerUpIndex)
 	{
 		playerAttack.havePowerUp[powerUpIndex] = false;
 		playerDefend.defend[powerUpIndex] = true;
-		playerAttack.attack[powerUpIndex] = true;
+		if (powerUpIndex == 0)
+		{
+			setTimeout(playerDefend.defend[powerUpIndex] = false,5000);
+		}
+		if (powerUpIndex == 1 || powerUpIndex == 3)
+		{
+			setTimeout(function(){playerDefend.defend[powerUpIndex] = false;},3000);	
+		}
 		if (powerUpIndex == 2 || powerUpIndex == 3)
 		{
 			playerDefend.scramble(3);

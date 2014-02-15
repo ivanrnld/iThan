@@ -8,6 +8,11 @@
   <body>
     <script type="text/javascript">
       G = new Game();
+      console.log(G.Player1.havePowerUp[1]);
+      G.Player1.havePowerUp[1] = true;
+      console.log(G.Player1.havePowerUp[1]);
+      G.operate(G.Player1,G.Player2,"P1");
+      console.log(G.Player1.havePowerUp[1]);
     </script>
   </body>
 </html>
