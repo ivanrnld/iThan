@@ -1,13 +1,13 @@
 .screen_class {
 	width : 500px;
-	height : 700px;
+	height : 630px;
 	border: 2px solid black;
 }
 #poweruprow {
 	background-color : gray;
 	width: 500px;
 	height : 105px;
-	top: 550px;
+	top: 530px;
 	position:relative;
 }
 .powerup {
@@ -48,7 +48,7 @@
 	margin-left : auto;
 	margin-right : auto;
 	position: relative;
-	top : 100px;
+	top : 90px;
 	margin-bottom : auto;
 	-webkit-perspective : 1200px;
 	perspective : 1200px;

@@ -976,18 +976,23 @@ Cube.prototype.addAllArrow = function() {
 initPower = function() {
 	$('#power'+1).click(function() {
 		usePower(1);
+		removePower(1);
 	});
 	$('#power'+2).click(function() {
 		usePower(2);
+		removePower(2);
 	});
 	$('#power'+3).click(function() {
 		usePower(3);
+		removePower(3);
 	});
 	$('#power'+4).click(function() {
 		usePower(4);
+		removePower(4);
 	});
 	$('#power'+5).click(function() {
 		usePower(5);
+		removePower(5);
 	});
 }
 
