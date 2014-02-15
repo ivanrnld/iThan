@@ -54,7 +54,7 @@ Game.prototype.usePowerUp = function(playerAttack,playerDefend,powerUpIndex)
 		playerDefend.defend[powerUpIndex] = true;
 		if (powerUpIndex == 0)
 		{
-			setTimeout(playerDefend.defend[powerUpIndex] = false,5000);
+			setTimeout(function(){playerDefend.defend[powerUpIndex] = false;},5000);
 		}
 		if (powerUpIndex == 1 || powerUpIndex == 3)
 		{
