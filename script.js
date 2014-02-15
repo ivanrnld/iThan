@@ -39,7 +39,7 @@ function Cube(container, id) {
 	$('#'+id).css('height', '100%');
 	$('#'+id).css('position', 'absolute');
 	$('#'+id).css('-webkit-transform-style', 'preserve-3d');
-	$('#'+id).css('-webkit-transform', 'rotateX(-20deg) rotateY(-45deg)');
+	$('#'+id).css('-webkit-transform', 'rotateX(-30deg) rotateY(-45deg)');
 	
 	for (var i = 0; i < 3; i++)
 	{
@@ -92,8 +92,8 @@ Cube.prototype.show = function() {
 	{
 		for (var j = 0; j < 3; j++) 
 		{
-			transform = "translateX(" + (this.size*(i-1)) + "px) "
-									+"translateY(" + (this.size*(j-1)) + "px) "
+			transform = "translateX(" + (this.size*(j-1)) + "px) "
+									+"translateY(" + (this.size*(i-1)) + "px) "
 									+"translateZ(" + this.size * (3/2) + "px) ";
 			$('#'+this.front.id[i][j]).css("-webkit-transform",transform);
 		}
@@ -104,8 +104,8 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(180deg)"
-									+"translateX(" + (this.size*(i-1)) + "px) "
-									+"translateY(" + (this.size*(j-1)) + "px) "
+									+"translateX(" + (this.size*(j-1)) + "px) "
+									+"translateY(" + (this.size*(i-1)) + "px) "
 									+"translateZ(" + this.size * (3/2) + "px) ";
 			$('#'+this.back.id[i][j]).css("-webkit-transform",transform);
 		}
@@ -116,8 +116,8 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(-90deg)"
-									+"translateX(" + (this.size*(i-1)) + "px) "
-									+"translateY(" + (this.size*(j-1)) + "px) "
+									+"translateX(" + (this.size*(j-1)) + "px) "
+									+"translateY(" + (this.size*(i-1)) + "px) "
 									+"translateZ(" + this.size * (3/2) + "px) ";
 			$('#'+this.left.id[i][j]).css("-webkit-transform",transform);
 		}
@@ -128,8 +128,8 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateY(90deg)"
-									+"translateX(" + (this.size*(i-1)) + "px) "
-									+"translateY(" + (this.size*(j-1)) + "px) "
+									+"translateX(" + (this.size*(j-1)) + "px) "
+									+"translateY(" + (this.size*(i-1)) + "px) "
 									+"translateZ(" + this.size * (3/2) + "px) ";
 			$('#'+this.right.id[i][j]).css("-webkit-transform",transform);
 		}
@@ -140,8 +140,8 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateX(90deg)"
-									+"translateX(" + (this.size*(i-1)) + "px) "
-									+"translateY(" + (this.size*(j-1)) + "px) "
+									+"translateX(" + (this.size*(j-1)) + "px) "
+									+"translateY(" + (this.size*(i-1)) + "px) "
 									+"translateZ(" + this.size * (3/2) + "px) ";
 			$('#'+this.up.id[i][j]).css("-webkit-transform",transform);
 		}
@@ -152,8 +152,8 @@ Cube.prototype.show = function() {
 		for (var j = 0; j < 3; j++) 
 		{
 			transform = "rotateX(-90deg)"
-									+"translateX(" + (this.size*(i-1)) + "px) "
-									+"translateY(" + (this.size*(j-1)) + "px) "
+									+"translateX(" + (this.size*(j-1)) + "px) "
+									+"translateY(" + (this.size*(i-1)) + "px) "
 									+"translateZ(" + this.size * (3/2) + "px) ";
 			$('#'+this.down.id[i][j]).css("-webkit-transform",transform);
 		}
@@ -230,10 +230,13 @@ turnL = function(x) {
 }
 
 Cube.prototype.addAllArrow = function() {
-	var id = '#' + this.front.id[0][0];
+	var id;
+	id = '#' + this.front.id[0][0];
+	console.log(id);
+	var a1 = id;
 	$(id).hover (
 		function() {
-			addArrow($(id));
+			addArrow($(a1));
 			$('#up').click(function() {
 				turnL(3);
 			});
@@ -247,7 +250,238 @@ Cube.prototype.addAllArrow = function() {
 				turnU(3);
 			});
 		}, function(){
-			removeArrow($(id));
+			removeArrow($(a1));
+		}
+	)
+	id = '#' + this.front.id[0][2];
+	var a2 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a2));
+			$('#up').click(function() {
+				turnR(1);
+			});
+			$('#down').click(function() {
+				turnR(3);
+			});
+			$('#left').click(function() {
+				turnU(1);
+			});
+			$('#right').click(function() {
+				turnU(3);
+			});
+		}, function(){
+			removeArrow($(a2));
+		}
+	)
+	id = '#' + this.front.id[2][0];
+	var a3 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a3));
+			$('#up').click(function() {
+				turnL(3);
+			});
+			$('#down').click(function() {
+				turnL(1);
+			});
+			$('#left').click(function() {
+				turnD(3);
+			});
+			$('#right').click(function() {
+				turnD(1);
+			});
+		}, function(){
+			removeArrow($(a3));
+		}
+	)
+	id = '#' + this.front.id[2][2];
+	var a4 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a4));
+			$('#up').click(function() {
+				turnR(1);
+			});
+			$('#down').click(function() {
+				turnR(3);
+			});
+			$('#left').click(function() {
+				turnD(3);
+			});
+			$('#right').click(function() {
+				turnD(1);
+			});
+		}, function(){
+			removeArrow($(a4));
+		}
+	)
+	id = '#' + this.right.id[0][0];
+	var a5 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a5));
+			$('#up').click(function() {
+				turnF(3);
+			});
+			$('#down').click(function() {
+				turnF(1);
+			});
+			$('#left').click(function() {
+				turnU(1);
+			});
+			$('#right').click(function() {
+				turnU(3);
+			});
+		}, function(){
+			removeArrow($(a5));
+		}
+	)
+	id = '#' + this.right.id[0][2];
+	var a6 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a6));
+			$('#up').click(function() {
+				turnB(1);
+			});
+			$('#down').click(function() {
+				turnB(3);
+			});
+			$('#left').click(function() {
+				turnU(1);
+			});
+			$('#right').click(function() {
+				turnU(3);
+			});
+		}, function(){
+			removeArrow($(a6));
+		}
+	)
+	id = '#' + this.right.id[2][0];
+	var a7 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a7));
+			$('#up').click(function() {
+				turnF(3);
+			});
+			$('#down').click(function() {
+				turnF(1);
+			});
+			$('#left').click(function() {
+				turnD(3);
+			});
+			$('#right').click(function() {
+				turnD(1);
+			});
+		}, function(){
+			removeArrow($(a7));
+		}
+	)
+	id = '#' + this.right.id[2][2];
+	var a8 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a8));
+			$('#up').click(function() {
+				turnB(1);
+			});
+			$('#down').click(function() {
+				turnB(3);
+			});
+			$('#left').click(function() {
+				turnD(3);
+			});
+			$('#right').click(function() {
+				turnD(1);
+			});
+		}, function(){
+			removeArrow($(a8));
+		}
+	)
+	id = '#' + this.up.id[0][0];
+	var a9 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a9));
+			$('#up').click(function() {
+				turnL(3);
+			});
+			$('#down').click(function() {
+				turnL(1);
+			});
+			$('#left').click(function() {
+				turnB(1);
+			});
+			$('#right').click(function() {
+				turnB(3);
+			});
+		}, function(){
+			removeArrow($(a9));
+		}
+	)
+	id = '#' + this.up.id[2][0];
+	var a10 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a10));
+			$('#up').click(function() {
+				turnL(3);
+			});
+			$('#down').click(function() {
+				turnL(1);
+			});
+			$('#left').click(function() {
+				turnF(3);
+			});
+			$('#right').click(function() {
+				turnF(1);
+			});
+		}, function(){
+			removeArrow($(a10));
+		}
+	)
+	id = '#' + this.up.id[0][2];
+	var a11 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a11));
+			$('#up').click(function() {
+				turnR(1);
+			});
+			$('#down').click(function() {
+				turnR(3);
+			});
+			$('#left').click(function() {
+				turnB(1);
+			});
+			$('#right').click(function() {
+				turnB(3);
+			});
+		}, function(){
+			removeArrow($(a11));
+		}
+	)
+	id = '#' + this.up.id[2][2];
+	var a12 = id;
+	$(id).hover (
+		function() {
+			addArrow($(a12));
+			$('#up').click(function() {
+				turnR(1);
+			});
+			$('#down').click(function() {
+				turnR(3);
+			});
+			$('#left').click(function() {
+				turnF(3);
+			});
+			$('#right').click(function() {
+				turnF(1);
+			});
+		}, function(){
+			removeArrow($(a12));
 		}
 	)
 }
