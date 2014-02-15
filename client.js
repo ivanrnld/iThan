@@ -22,7 +22,7 @@ socket.on('update', function(data){
   for (i = 0; i < 5; ++i)
       if (data["me"].havePowerUp[i])
           addPower(i+1);
-	bool canChange = false;
+	var canChange = false;
 	for (i = 0; i < 3; ++i)
 		for (j = 0; j < 3; ++j)
 		{
