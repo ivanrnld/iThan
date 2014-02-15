@@ -3,10 +3,21 @@ var socket = io.connect('http://localhost:8080');
 //   console.log(data);
 //   socket.emit('my other event', { my: 'data' });
 // });
+var auth = 0;
+socket.on('auth', function(data){
+  auth = data["auth"];
+  // socket.emit('ack', true);
+});
 
 move = function(moveCommand){
-  socket.emit('move', {move: moveCommand});
+
+  console.log("Client: " + auth);
+  socket.emit('move', {auth: auth, move: moveCommand});
 }
+
+socket.on('update', function(data){
+  console.log(data);
+});
 
 removeArrow = function(x) {
   x.find("img").remove();

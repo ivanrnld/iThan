@@ -1,3 +1,5 @@
+var Constant = require('./Constant.js');
+
 function Face(size){
   //this = this;
   this._colors = []; // array of array of string constant
@@ -109,13 +111,15 @@ Face.prototype.reflectD = function(){
 Face.prototype.checkSame = function(){
   var topleft = this._colors[0][0];
   var i,j;
-  for (i = 0; i < _cubeSize; ++i)
-    for (j = 0; j < _cubeSize; ++j)
+  for (i = 0; i < this._cubeSize; ++i)
+    for (j = 0; j < this._cubeSize; ++j)
       if (this._colors[i][j] != topleft) return -1;
     return topleft;
 }
 
-
+module.exports = function(size){
+  return new Face(size);
+}
 
 
 

@@ -1,7 +1,10 @@
+var Cube = require('./Cube.js');
+var Constant = require('./Constant.js');
+
 function Game()
 {
-	this.Player1 = new Cube();
-	this.Player2 = new Cube();
+	this.Player1 = Cube();
+	this.Player2 = Cube();
 }
 
 Game.prototype.scramble = function()
@@ -63,7 +66,7 @@ Game.prototype.usePowerUp = function(playerAttack,playerDefend,powerUpIndex)
 
 Game.prototype.send = function(player)
 {
-	var toSend = new Cube();
+	var toSend = Cube();
 	toSend.front.fillSetColor(player.front._colors);
 	toSend.left.fillSetColor(player.left._colors);
 	toSend.up.fillSetColor(player.up._colors);
@@ -78,12 +81,12 @@ Game.prototype.send = function(player)
 		for (var i = 0; i < 3; ++i)
 			for (var j = 0; j < 3; ++j)
 			{
-				toSend.front._colors[i][j] = COLOR_BLACK;
-				toSend.left._colors[i][j] = COLOR_BLACK;
-				toSend.up._colors[i][j] = COLOR_BLACK;
-				toSend.down._colors[i][j] = COLOR_BLACK;
-				toSend.right._colors[i][j] = COLOR_BLACK;
-				toSend.back._colors[i][j] = COLOR_BLACK;
+				toSend.front._colors[i][j] = Constant.COLOR_BLACK;
+				toSend.left._colors[i][j] = Constant.COLOR_BLACK;
+				toSend.up._colors[i][j] = Constant.COLOR_BLACK;
+				toSend.down._colors[i][j] = Constant.COLOR_BLACK;
+				toSend.right._colors[i][j] = Constant.COLOR_BLACK;
+				toSend.back._colors[i][j] = Constant.COLOR_BLACK;
 			}
 	}
 	return toSend;
@@ -95,7 +98,9 @@ Game.prototype.move = function(player,moves)
 	player.check();
 }
 
-
+module.exports = function(){
+	return new Game();
+}
 
 
 
