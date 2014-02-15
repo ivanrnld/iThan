@@ -109,3 +109,9 @@ turnZ = function() {
   move('Z');
   console.log('Z');
 }
+
+usePower = function(x) {
+  //NOTE : ONE BASED
+  move('P' + (x-1));
+  console.log("P" + (x-1));
+}
