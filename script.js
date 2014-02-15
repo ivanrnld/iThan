@@ -168,7 +168,15 @@ Cube.prototype.changeSize = function(newSize) {
 	$('#'+this.Id + " div").css("height", newSize);
 }
 
-
+addCirc = function(x) {
+	x.append(jQuery('<img></img>',{
+		src : 'circ.png',
+		id : 'circ'
+	}));
+	$("#circ").css('position','absolute');
+	$("#circ").css('width','100px');
+	$("#circ").css('height','100px');
+}
 
 addArrow = function(x) {
 	x.append(jQuery('<img></img>',{
@@ -228,6 +236,20 @@ turnR = function(x) {
 turnL = function(x) {
 	console.log('L' + x);
 }
+
+turnX = function() {
+	console.log('X');
+}
+
+turnY = function() {
+	console.log('Y');
+}
+
+turnZ = function() {
+	console.log('Z');
+}
+
+
 
 Cube.prototype.addAllArrow = function() {
 	var id;
@@ -482,6 +504,42 @@ Cube.prototype.addAllArrow = function() {
 			});
 		}, function(){
 			removeArrow($(a12));
+		}
+	)
+	id = '#' + this.up.id[1][1];
+	var a13 = id;
+	$(id).hover (
+		function() {
+			addCirc($(a13));
+			$('#circ').click(function() {
+				turnY();
+			});
+		}, function() {
+			removeArrow($(a13));
+		}
+	)
+	id = '#' + this.front.id[1][1];
+	var a14 = id;
+	$(id).hover (
+		function() {
+			addCirc($(a14));
+			$('#circ').click(function() {
+				turnZ();
+			});
+		}, function() {
+			removeArrow($(a14));
+		}
+	)
+	id = '#' + this.right.id[1][1];
+	var a15 = id;
+	$(id).hover (
+		function() {
+			addCirc($(a15));
+			$('#circ').click(function() {
+				turnX();
+			});
+		}, function() {
+			removeArrow($(a15));
 		}
 	)
 }
