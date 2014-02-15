@@ -1,18 +1,30 @@
 <html>
+  <title>Rubik's Cube Battle!</title>
   <head>
     <script src = "jquery-1.11.0.js"> </script>
     <script src = "script.js"> </script>
     <script src = "https://fbhack-c9-nathanajah.c9.io/socket.io/socket.io.js"></script>
-    <script src = "client.js"> </script>
     <link rel = "stylesheet" href = "style.css"> </link>
   </head>
   <body>
+    
     <div id = "screen">
-      <div id = "player">
-        <div id = "container"> </div>
+      <div id = "playerscreen" class = "screen_class">
+        <div id = "player">
+          <div id = "container"> </div>
+        </div>
+        <div id = "poweruprow">
+          <div class = "powerup" id = "power1"> </div>
+          <div class = "powerup" id = "power2"> </div>
+          <div class = "powerup" id = "power3"> </div>
+          <div class = "powerup" id = "power4"> </div>
+          <div class = "powerup" id = "power5"> </div>
+        </div>
       </div>
-      <div id = "enemy">
-        <div id = "containerenemy" > </div>
+      <div id = "enemyscreen" class = "screen_class">
+        <div id = "enemy">
+          <div id = "containerenemy" > </div>
+        </div>
       </div>
     </div>
     <script>
@@ -20,16 +32,12 @@
       player.changeSize(100);
       player.show();
       player.addAllArrow();
-      
-      enemy = new Cube("containerenemy", "cubeenemy");
-      enemy.changeSize(60);
-      enemy.show();
+      initPower();
 
-      // var socket = io.connect('http://localhost:8080');
-      // socket.on('news', function (data) {
-      //   console.log(data);
-      //   socket.emit('my other event', { my: 'data' });
-      // });
+      enemy = new Cube("containerenemy", "cubeenemy");
+      enemy.changeSize(80);
+      enemy.show();
     </script>
+    <script src = "client.js"> </script>
   </body>
 </html>

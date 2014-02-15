@@ -4,6 +4,7 @@
 		<script src = "jquery-1.11.0.js"> </script>
 		<script src = "script.js"> </script>
 		<link rel = "stylesheet" href = "style.css"> </link>
+		<script src = "clientInit.js"> </script>
 	</head>
 	<body>
 		
@@ -27,15 +28,13 @@
 			</div>
 		</div>
 		<script>
-			player = new Cube("container","cube");
 			player.changeSize(100);
-			player.show();
-			player.addAllArrow();
-			initPower();
-			
-			enemy = new Cube("containerenemy", "cubeenemy");
-			enemy.changeSize(80);
-			enemy.show();
+      player.show();
+      player.addAllArrow();
+      initPower();
+
+      enemy.changeSize(80);
+      enemy.show();
 		</script>
 	</body>
 </html>
