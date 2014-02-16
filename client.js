@@ -425,6 +425,7 @@ turnS = function(x) {
 }
 
 restart = function() {
+  socket.emit('restart', {auth: auth});
 	console.log("RESTARTING");
 }
 
