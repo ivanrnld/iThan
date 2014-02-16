@@ -47,21 +47,26 @@ io.sockets.on('connection', function (socket) {
     if(numPlayer == 0){
       socket.emit('auth', { auth: auth1});
 
-      // clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
-      updatePlayer1Only();
+      clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+      // updatePlayer1Only();
 
       clients[0].on('operate', function(data){
         if(data["auth"] == auth1) gameObject.operate(gameObject.Player1, gameObject.Player2, data["operate"]);
+        clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+      });
+
+      clients[0].on('restart', function(data){
+        if(data["auth"] == auth1) gameObject = Game();
         clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
       });
     }
     else{
       socket.emit('auth', {auth: auth2});
 
-      // clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
-      // clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+      clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+      clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
 
-      updateBothPlayers();
+      // updateBothPlayers();
 
       clients[0].on('operate', function(data){
         if(data["auth"] == auth1) gameObject.operate(gameObject.Player1, gameObject.Player2, data["operate"]);
@@ -71,6 +76,18 @@ io.sockets.on('connection', function (socket) {
 
       clients[1].on('operate', function(data){
         if (data["auth"] == auth2) gameObject.operate(gameObject.Player2, gameObject.Player1, data["operate"]);
+        clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+        clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+      });
+
+      clients[0].on('restart', function(data){
+        if(data["auth"] == auth1) gameObject = Game();
+        clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+        clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+      });
+
+      clients[1].on('restart', function(data){
+        if(data["auth"] == auth2) gameObject = Game();
         clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
         clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
       });
@@ -85,10 +102,10 @@ io.sockets.on('connection', function (socket) {
     clients[0].emit('auth', {auth: auth1});
     clients[1].emit('auth', {auth: auth2});
 
-    // clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
-    // clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+    clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+    clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
 
-    updateBothPlayers();
+    // updateBothPlayers();
 
     clients[0].on('operate', function(data){
       if(data["auth"] == auth1) gameObject.operate(gameObject.Player1, gameObject.Player2, data["operate"]);
@@ -101,32 +118,44 @@ io.sockets.on('connection', function (socket) {
       clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
       clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
     });
+
+    clients[0].on('restart', function(data){
+      if(data["auth"] == auth1) gameObject = Game();
+      clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+      clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+    });
+
+    clients[1].on('restart', function(data){
+      if(data["auth"] == auth2) gameObject = Game();
+      clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+      clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+    });
   }
 
   numPlayer++;
 });
 
-function updateBothPlayers(){
-  if(typeof updatePlayer1 != 'undefined' || typeof updatePlayer1 != 'null') clearInterval(updatePlayer1);
-  if(typeof updatePlayer2 != 'undefined' || typeof updatePlayer2 != 'null') clearInterval(updatePlayer2);
+// function updateBothPlayers(){
+//   if(typeof updatePlayer1 != 'undefined' || typeof updatePlayer1 != 'null') clearInterval(updatePlayer1);
+//   if(typeof updatePlayer2 != 'undefined' || typeof updatePlayer2 != 'null') clearInterval(updatePlayer2);
 
-  updatePlayer1 = setInterval(function(){
-    clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
-    if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer1);
-  }, 2000);
-  updatePlayer2 = setInterval(function(){
-    clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
-    if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer2);
-  }, 2000);
-}
+//   updatePlayer1 = setInterval(function(){
+//     clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+//     if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer1);
+//   }, 2000);
+//   updatePlayer2 = setInterval(function(){
+//     clients[1].emit('update', {me: gameObject.send(gameObject.Player2), enemy: gameObject.send(gameObject.Player1)});
+//     if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer2);
+//   }, 2000);
+// }
 
-function updatePlayer1Only(){
-  if(typeof updatePlayer1 != 'undefined' || typeof updatePlayer1 != 'null') clearInterval(updatePlayer1);
+// function updatePlayer1Only(){
+//   if(typeof updatePlayer1 != 'undefined' || typeof updatePlayer1 != 'null') clearInterval(updatePlayer1);
 
-  updatePlayer1 = setInterval(function(){
-    clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
-    if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer1);
-  }, 2000);
-}
+//   updatePlayer1 = setInterval(function(){
+//     clients[0].emit('update', {me: gameObject.send(gameObject.Player1), enemy: gameObject.send(gameObject.Player2)});
+//     if(gameObject.Player1.isSolved || gameObject.Player2.isSolved) clearInterval(updatePlayer1);
+//   }, 2000);
+// }
 
 
