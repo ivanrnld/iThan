@@ -435,6 +435,7 @@ turnS = function(x) {
 restart = function() {
   socket.emit('restart', {auth: auth});
 	$('.result').remove();
+	initPower();
 	console.log("RESTARTING");
 }
 

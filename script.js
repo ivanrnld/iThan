@@ -1009,6 +1009,16 @@ Cube.prototype.addAllArrow = function() {
 }
 
 initPower = function() {
+	$('#power1').css('background-color','white');
+	$('#power2').css('background-color','white');
+	$('#power3').css('background-color','white');
+	$('#power4').css('background-color','white');
+	$('#power5').css('background-color','white');
+	$('#power1').css('background-image','none');
+	$('#power2').css('background-image','none');
+	$('#power3').css('background-image','none');
+	$('#power4').css('background-image','none');
+	$('#power5').css('background-image','none');
 	$('#power'+1).click(function() {
 		usePower(1);
 		removePower(1);
