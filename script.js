@@ -158,6 +158,31 @@ function Cube(container, id) {
 	$('#'+this.down.id[2][1]).addClass("fdown fback fmid");
 	$('#'+this.down.id[2][2]).addClass("fdown fback fright");
 }
+Cube.prototype.check = function(){
+	for (var i = 0; i < 3; i++)
+	{
+		for (var j = 0; j < 3; j++)
+		{
+			var transform = this.front.oritrans[i][j];
+			if ($('#'+this.front.id[i][j]).css("transform")!=this.front.oritrans[i][j])
+			{
+				console.log($('#'+this.front.id[i][j]).css("transform") + ' ' + this.front.oritrans[i][j]);
+				return false;
+			}
+			if ($('#'+this.back.id[i][j]).css("transform")!=this.back.oritrans[i][j])
+				return false;
+			if ($('#'+this.up.id[i][j]).css("transform")!=this.up.oritrans[i][j])
+				return false;
+			if ($('#'+this.down.id[i][j]).css("transform")!=this.down.oritrans[i][j])
+				return false;
+			if ($('#'+this.left.id[i][j]).css("transform")!=this.left.oritrans[i][j])
+				return false;
+			if ($('#'+this.right.id[i][j]).css("transform")!=this.right.oritrans[i][j])
+				return false;				
+		}
+	}
+	return true;
+}
 
 Cube.prototype.revert = function() {
 	//front
@@ -255,10 +280,10 @@ Cube.prototype.show = function() {
 			transform = "translateX(" + ((this.size*(j-1))+0) + "px) "
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
-			this.front.oritrans[i][j] = transform;
 			$('#'+this.front.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.front.id[i][j]).css("transform",transform);
 			$('#'+this.front.id[i][j]).css("z-index",1);
+			this.front.oritrans[i][j] = $('#'+this.front.id[i][j]).css("transform");
 		}
 	}
 	//back
@@ -271,9 +296,11 @@ Cube.prototype.show = function() {
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			this.back.oritrans[i][j] = transform;
+			transform = this.back.oritrans[i][j];
 			$('#'+this.back.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.back.id[i][j]).css("transform",transform);
 			$('#'+this.back.id[i][j]).css("z-index",0);
+			this.back.oritrans[i][j] = $('#'+this.back.id[i][j]).css("transform");
 		}
 	}
 	//left
@@ -286,9 +313,11 @@ Cube.prototype.show = function() {
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			this.left.oritrans[i][j] = transform;
+			transform = this.left.oritrans[i][j];
 			$('#'+this.left.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.left.id[i][j]).css("transform",transform);
 			$('#'+this.left.id[i][j]).css("z-index",0);
+			this.left.oritrans[i][j] = $('#'+this.left.id[i][j]).css("transform");
 		}
 	}
 	//right
@@ -301,9 +330,11 @@ Cube.prototype.show = function() {
 									+"translateY(" + ((this.size*(i-1))+0) + "px) "
 									+"translateZ(" + (this.size*(3/2)+0)+ "px) ";
 			this.right.oritrans[i][j] = transform;
+			transform = this.right.oritrans[i][j];
 			$('#'+this.right.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.right.id[i][j]).css("transform",transform);
 			$('#'+this.right.id[i][j]).css("z-index",1);
+			this.right.oritrans[i][j] = $('#'+this.right.id[i][j]).css("transform");
 		}
 	}
 	//top
@@ -316,9 +347,11 @@ Cube.prototype.show = function() {
 									+"translateY(" + (this.size*(i-1)+0) + "px) "
 									+"translateZ(" + (this.size*(3/2)+0) + "px) ";
 			this.up.oritrans[i][j] = transform;
+			transform = this.up.oritrans[i][j];
 			$('#'+this.up.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.up.id[i][j]).css("transform",transform);
 			$('#'+this.up.id[i][j]).css("z-index",1);
+			this.up.oritrans[i][j] = $('#'+this.up.id[i][j]).css("transform");
 		}
 	}
 	//bottom
@@ -331,9 +364,11 @@ Cube.prototype.show = function() {
 									+"translateY(" + (this.size*(i-1)+0) + "px) "
 									+"translateZ(" + (this.size * (3/2)+0) + "px) ";
 			this.down.oritrans[i][j] = transform;
+			transform = this.down.oritrans[i][j];
 			$('#'+this.down.id[i][j]).css("-webkit-transform",transform);
 			$('#'+this.down.id[i][j]).css("transform",transform);
 			$('#'+this.down.id[i][j]).css("z-index",0);
+			this.down.oritrans[i][j] = $('#'+this.down.id[i][j]).css("transform");
 		}
 	}
 }

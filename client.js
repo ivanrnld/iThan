@@ -140,6 +140,8 @@ removeArrow = function(x) {
 }
 
 turnU = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fup').each(function() {
@@ -165,6 +167,8 @@ turnU = function(x) {
 }
 
 turnD = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fdown').each(function() {
@@ -190,6 +194,8 @@ turnD = function(x) {
 }
 
 turnB = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fback').each(function() {
@@ -215,6 +221,8 @@ turnB = function(x) {
 }
 
 turnF = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .ffront').each(function() {
@@ -240,6 +248,8 @@ turnF = function(x) {
 }
 
 turnR = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fright').each(function() {
@@ -265,6 +275,8 @@ turnR = function(x) {
 }
 
 turnL = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fleft').each(function() {
@@ -290,6 +302,8 @@ turnL = function(x) {
 }
 
 turnX = function() {
+	if (!player.check())
+		return;
 	$('#cube div').each(function() {
 		$(this).css('transition-property','transform');
 		$(this).css('transition-duration','0.1s');
@@ -302,6 +316,8 @@ turnX = function() {
 }
 
 turnY = function() {
+	if (!player.check())
+		return;
 	$('#cube div').each(function() {
 		$(this).css('transition-property','transform');
 		$(this).css('transition-duration','0.1s');
@@ -314,6 +330,8 @@ turnY = function() {
 }
 
 turnZ = function() {
+	if (!player.check())
+		return;
 	$('#cube div').each(function() {
 		$(this).css('transition-property','transform');
 		$(this).css('transition-duration','0.1s');
@@ -326,6 +344,8 @@ turnZ = function() {
 }
 
 turnM = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fmid').each(function() {
@@ -351,6 +371,8 @@ turnM = function(x) {
 }
 
 turnE = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fequ').each(function() {
@@ -376,6 +398,8 @@ turnE = function(x) {
 }
 
 turnS = function(x) {
+	if (!player.check())
+		return;
 	if (x==3)
 	{
 		$('#cube .fstand').each(function() {
