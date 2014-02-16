@@ -22,6 +22,7 @@ socket.on('update', function(data){
 	if (data["me"].isSolved) {
 		var x = jQuery('<div>YOU WIN!</div>', {
 		});
+		x.addClass('result');
 		x.css('position','absolute');
 		x.css('width','500px');
 		x.css('height','100px');
@@ -32,9 +33,11 @@ socket.on('update', function(data){
 		$('#playerscreen').append(x);
 		console.log(x.css('height'));
 	}
-	if (data["enemy"].isSolved) {
+	else if (data["enemy"].isSolved) {
 		var x = jQuery('<div>YOU LOSE!</div>', {
 		});
+		x.addClass('result');
+		console.log(x.attr("class"));
 		x.css('position','absolute');
 		x.css('width','500px');
 		x.css('height','100px');
@@ -44,6 +47,11 @@ socket.on('update', function(data){
 		x.css('z-index','2');
 		$('#playerscreen').append(x);
 		console.log(x.css('height'));
+	}
+	else {
+		$('.result').each(function() {
+			($(this)).remove();
+		});
 	}
   for (i = 0; i < 5; ++i)
       if (data["me"].havePowerUp[i])
@@ -426,6 +434,7 @@ turnS = function(x) {
 
 restart = function() {
   socket.emit('restart', {auth: auth});
+	$('.result').remove();
 	console.log("RESTARTING");
 }
 
