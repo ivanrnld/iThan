@@ -27,6 +27,8 @@
         </div>
       </div>
     </div>
+		
+			<button id = "restart"> RESTART </button>
     <script>
       player = new Cube("container","cube");
       player.changeSize(100);
@@ -39,5 +41,10 @@
       enemy.show();
     </script>
     <script src = "client.js"> </script>
+			<script>
+				$('#restart').click(function() {
+					restart();
+				});
+			</script>
   </body>
 </html>

@@ -424,6 +424,10 @@ turnS = function(x) {
 	console.log('S' + x);
 }
 
+restart = function() {
+	console.log("RESTARTING");
+}
+
 usePower = function(x) {
   //NOTE : ONE BASED
   move('P' + (x-1));

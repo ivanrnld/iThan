@@ -18,6 +18,14 @@
 	border-radius : 10px;
 	top: 2px;
 }
+#restart {
+	position : absolute;
+	height : 630px;
+	width: 300px;
+	left : 1025px;
+	top : 10px;
+	
+}
 #power2 {
 	left : 100px;
 }
